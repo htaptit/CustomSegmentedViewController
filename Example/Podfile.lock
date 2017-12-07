@@ -1,0 +1,16 @@
+PODS:
+  - SJSegmentedScrollView (1.3.6)
+
+DEPENDENCIES:
+  - SJSegmentedScrollView (from `../`)
+
+EXTERNAL SOURCES:
+  SJSegmentedScrollView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SJSegmentedScrollView: ce2fe388d471dd9f295f3f1d14df228e80bc6fb1
+
+PODFILE CHECKSUM: e226e41b52abc228846f2f327774db2d17f87ac4
+
+COCOAPODS: 1.2.1
