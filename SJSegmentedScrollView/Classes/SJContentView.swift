@@ -24,7 +24,6 @@ import UIKit
 
 class SJContentView: UIScrollView {
     
-    var verticalTop: CGFloat = 0
     var pageIndex = 0
     var contentViews = [UIView]()
     var contentView: UIView!
@@ -32,7 +31,7 @@ class SJContentView: UIScrollView {
     var contentSubViewWidthConstraints = [NSLayoutConstraint]()
     let animationDuration = 0.3
     var didSelectSegmentAtIndex: DidSelectSegmentAtIndex?
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -98,7 +97,7 @@ class SJContentView: UIScrollView {
         contentView.addConstraint(widthConstraint)
         contentSubViewWidthConstraints.append(widthConstraint)
         
-        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(\(self.verticalTop))-[view]-0-|",
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|",
                                                                                  options: [],
                                                                                  metrics: nil,
                                                                                  views: ["view": view])
@@ -148,6 +147,6 @@ extension SJContentView: UIScrollViewDelegate {
         pageIndex = Int(contentOffset.x / bounds.size.width)
         didSelectSegmentAtIndex?(nil, pageIndex, true)
         NotificationCenter.default.post(name: Notification.Name(rawValue: "DidChangeSegmentIndex"),
-                                                                  object: pageIndex)
+                                        object: pageIndex)
     }
 }
