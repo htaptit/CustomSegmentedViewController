@@ -22,7 +22,13 @@
 
 import UIKit
 
-class SJSegmentedScrollView: UIScrollView {
+open class SJSegmentedScrollView: UIScrollView {
+    
+    var isBounces: Bool = false {
+        didSet {
+            bounces = isBounces
+        }
+    }
     
     var segmentView: SJSegmentView?
     var headerViewHeight: CGFloat! = 0
@@ -74,7 +80,7 @@ class SJSegmentedScrollView: UIScrollView {
         showsHorizontalScrollIndicator = sjShowsHorizontalScrollIndicator
         showsVerticalScrollIndicator = sjShowsVerticalScrollIndicator
 		decelerationRate = UIScrollViewDecelerationRateFast
-        bounces = false
+        bounces = self.isBounces
         
         addObserver(self, forKeyPath: "contentOffset",
                          options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old],
@@ -83,7 +89,7 @@ class SJSegmentedScrollView: UIScrollView {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -313,7 +319,7 @@ class SJSegmentedScrollView: UIScrollView {
         }
     }
 
-	override func observeValue(forKeyPath keyPath: String?,
+    override open func observeValue(forKeyPath keyPath: String?,
 	                           of object: Any?,
 	                           change: [NSKeyValueChangeKey : Any]?,
 	                           context: UnsafeMutableRawPointer?) {

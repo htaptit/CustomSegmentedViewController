@@ -269,9 +269,14 @@ import UIKit
     }
     
     open weak var delegate:SJSegmentedViewControllerDelegate?
-    var segmentedScrollView = SJSegmentedScrollView(frame: CGRect.zero)
+    open var segmentedScrollView = SJSegmentedScrollView(frame: CGRect.zero)
     var segmentScrollViewTopConstraint: NSLayoutConstraint?
     
+    open var isBounces: Bool = false {
+        didSet {
+            self.segmentedScrollView.isBounces = self.isBounces
+        }
+    }
     
     /**
      Custom initializer for SJSegmentedViewController.
@@ -359,6 +364,7 @@ import UIKit
         segmentedScrollView.segmentViewHeight           = segmentViewHeight
         segmentedScrollView.backgroundColor             = segmentedScrollViewColor
         segmentedScrollView.sjDisableScrollOnContentView = disableScrollOnContentView
+//        segmentedScrollView.isBounces = self.isBounces
     }
     
     /**
