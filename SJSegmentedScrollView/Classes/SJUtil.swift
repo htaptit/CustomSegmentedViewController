@@ -48,7 +48,7 @@ class SJUtil {
 			}
 		}
 		
-        return 44.0
+        return topSpacing
     }
 
     /**
