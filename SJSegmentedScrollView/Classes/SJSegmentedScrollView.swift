@@ -22,9 +22,14 @@
 
 import UIKit
 
-class SJSegmentedScrollView: UIScrollView {
+open class SJSegmentedScrollView: UIScrollView {
     
-    var verticalTop: CGFloat = 0
+    var isBounces: Bool = false {
+        didSet {
+            bounces = isBounces
+        }
+    }
+    
     var segmentView: SJSegmentView?
     var headerViewHeight: CGFloat! = 0
     var segmentViewHeight: CGFloat! = 0
@@ -59,6 +64,13 @@ class SJSegmentedScrollView: UIScrollView {
 			contentView?.showsHorizontalScrollIndicator = sjShowsHorizontalScrollIndicator
 		}
 	}
+    
+    private var viewObservers = [UIView]()
+    var sjDisableScrollOnContentView: Bool = false {
+        didSet {
+            contentView?.isScrollEnabled = !sjDisableScrollOnContentView
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -68,7 +80,7 @@ class SJSegmentedScrollView: UIScrollView {
         showsHorizontalScrollIndicator = sjShowsHorizontalScrollIndicator
         showsVerticalScrollIndicator = sjShowsVerticalScrollIndicator
 		decelerationRate = UIScrollViewDecelerationRateFast
-        bounces = false
+        bounces = self.isBounces
         
         addObserver(self, forKeyPath: "contentOffset",
                          options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old],
@@ -77,7 +89,7 @@ class SJSegmentedScrollView: UIScrollView {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -85,6 +97,12 @@ class SJSegmentedScrollView: UIScrollView {
         removeObserver(self,
                             forKeyPath: "contentOffset",
                             context: nil)
+        
+        for view in viewObservers {
+            view.removeObserver(self,
+                                forKeyPath: "contentOffset",
+                                context: nil)
+        }
     }
     
     func setContentView() {
@@ -145,7 +163,7 @@ class SJSegmentedScrollView: UIScrollView {
     }
     
     func addObserverFor(_ view: UIView) {
-        
+        viewObservers.append(view)
         view.addObserver(self, forKeyPath: "contentOffset",
                          options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old],
                          context: nil)
@@ -240,9 +258,9 @@ class SJSegmentedScrollView: UIScrollView {
     func createContentView() -> SJContentView {
         
         let contentView = SJContentView(frame: CGRect.zero)
-        contentView.verticalTop = self.verticalTop
 		contentView.showsVerticalScrollIndicator = sjShowsVerticalScrollIndicator
 		contentView.showsHorizontalScrollIndicator = sjShowsHorizontalScrollIndicator
+        contentView.isScrollEnabled = !sjDisableScrollOnContentView
         contentView.translatesAutoresizingMaskIntoConstraints = false
 		contentView.bounces = segmentBounces
         scrollContentView.addSubview(contentView)
@@ -301,7 +319,7 @@ class SJSegmentedScrollView: UIScrollView {
         }
     }
 
-	override func observeValue(forKeyPath keyPath: String?,
+    override open func observeValue(forKeyPath keyPath: String?,
 	                           of object: Any?,
 	                           change: [NSKeyValueChangeKey : Any]?,
 	                           context: UnsafeMutableRawPointer?) {

@@ -42,7 +42,11 @@ class ViewController: SJSegmentedViewController {
 			                           thirdViewController!,
 			                           ]
             
-            verticalTop = -100
+            let refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: #selector(self.temp), for: .valueChanged)
+            self.segmentedScrollView.addSubview(refreshControl)
+            isBounces = true
+//            verticalTop = -100
 			headerViewHeight = 200
 			selectedSegmentViewHeight = 5.0
 //            headerViewOffsetHeight = -10.0
@@ -59,6 +63,10 @@ class ViewController: SJSegmentedViewController {
 		super.viewDidLoad()
 	}
 
+    @objc func temp() {
+        
+    }
+    
 	func getSegmentTabWithImage(_ imageName: String) -> UIView {
 
 		let view = UIImageView()

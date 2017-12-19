@@ -255,17 +255,28 @@ import UIKit
 		}
 	}
     
-    open var verticalTop : CGFloat = 0.0 {
+    /**
+     *  Disable scroll on contentView.
+     *
+     *  By default false.
+     *
+     *  segmentedScrollView.disableScrollOnContentView = true
+     */
+    open var disableScrollOnContentView: Bool = false {
         didSet {
-            segmentedScrollView.verticalTop = verticalTop
+            segmentedScrollView.sjDisableScrollOnContentView = disableScrollOnContentView
         }
     }
-
+    
     open weak var delegate:SJSegmentedViewControllerDelegate?
-    var viewObservers = [UIView]()
-    var segmentedScrollView = SJSegmentedScrollView(frame: CGRect.zero)
+    open var segmentedScrollView = SJSegmentedScrollView(frame: CGRect.zero)
     var segmentScrollViewTopConstraint: NSLayoutConstraint?
     
+    open var isBounces: Bool = false {
+        didSet {
+            self.segmentedScrollView.isBounces = self.isBounces
+        }
+    }
     
     /**
      Custom initializer for SJSegmentedViewController.
@@ -288,14 +299,6 @@ import UIKit
     
     required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-    }
-    
-    deinit {
-        for view in viewObservers {
-            view.removeObserver(segmentedScrollView,
-                                forKeyPath: "contentOffset",
-                                context: nil)
-        }
     }
     
     override open func loadView() {
@@ -348,6 +351,7 @@ import UIKit
      * Set the default values for the segmented scroll view.
      */
     func setDefaultValuesToSegmentedScrollView() {
+        
         segmentedScrollView.selectedSegmentViewColor    = selectedSegmentViewColor
         segmentedScrollView.selectedSegmentViewHeight   = selectedSegmentViewHeight
         segmentedScrollView.segmentTitleColor           = segmentTitleColor
@@ -359,6 +363,8 @@ import UIKit
         segmentedScrollView.headerViewOffsetHeight      = headerViewOffsetHeight
         segmentedScrollView.segmentViewHeight           = segmentViewHeight
         segmentedScrollView.backgroundColor             = segmentedScrollViewColor
+        segmentedScrollView.sjDisableScrollOnContentView = disableScrollOnContentView
+//        segmentedScrollView.isBounces = self.isBounces
     }
     
     /**
@@ -424,8 +430,6 @@ import UIKit
      - parameter contentControllers: array of ViewControllers
      */
     func addContentControllers(_ contentControllers: [UIViewController]) {
-        
-        viewObservers.removeAll()
         segmentedScrollView.addSegmentView(contentControllers, frame: view.bounds)
         
         var index = 0
@@ -446,7 +450,6 @@ import UIKit
                 observeView = view
             }
 
-            viewObservers.append(observeView!)
             segmentedScrollView.addObserverFor(observeView!)
             index += 1
         }
