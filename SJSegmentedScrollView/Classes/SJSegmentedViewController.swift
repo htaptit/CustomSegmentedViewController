@@ -278,6 +278,12 @@ import UIKit
         }
     }
     
+    open var isFixedWidthTabSegment: Bool = false {
+        didSet {
+            self.segmentedScrollView.isFixedWidthTabSegment = self.isFixedWidthTabSegment
+        }
+    }
+    
     /**
      Custom initializer for SJSegmentedViewController.
      

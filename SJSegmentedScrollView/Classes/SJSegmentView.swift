@@ -24,6 +24,8 @@ import UIKit
 
 class SJSegmentView: UIScrollView {
     
+    var isFixedWidthTabSegment: Bool?
+    
     var selectedSegmentViewColor: UIColor? {
         didSet {
             selectedSegmentView?.backgroundColor = selectedSegmentViewColor
@@ -277,7 +279,13 @@ class SJSegmentView: UIScrollView {
     }
 
 	func widthForSegment(_ frame: CGRect) -> CGFloat {
-
+        
+        if let _ = self.isFixedWidthTabSegment {
+            if self.isFixedWidthTabSegment! {
+                return frame.size.width /  CGFloat((controllers?.count)!)
+            }
+        }
+        
 		var maxWidth: CGFloat = 0
 		for controller in controllers! {
 
