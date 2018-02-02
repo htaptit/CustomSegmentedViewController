@@ -33,13 +33,20 @@ class ViewController: SJSegmentedViewController {
 			thirdViewController?.loadViewController = { (index) in
 				self.setSelectedSegmentAt(index, animated: true)
 			}
+            
+            let thirdViewController1 = storyboard
+                .instantiateViewController(withIdentifier: "ThirdViewController") as? ThirdViewController
+            thirdViewController?.title = "AAAAAAAAAAAAAAAAAAAA"
+            thirdViewController?.loadViewController = { (index) in
+                self.setSelectedSegmentAt(index, animated: true)
+            }
 
 	
 
 			headerViewController = headerController
 			segmentControllers = [firstViewController,
 			                           secondViewController,
-			                           thirdViewController!,
+			                           thirdViewController!,thirdViewController1!
 			                           ]
             
             let refreshControl = UIRefreshControl()
@@ -57,6 +64,7 @@ class ViewController: SJSegmentedViewController {
 			showsVerticalScrollIndicator = false
 			segmentBounces = false
 //            delegate = self
+            isFixedWidthTabSegment = true
 		}
 
 		title = "Segment"

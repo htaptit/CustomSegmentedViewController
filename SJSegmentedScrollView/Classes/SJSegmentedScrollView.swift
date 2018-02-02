@@ -200,11 +200,14 @@ open class SJSegmentedScrollView: UIScrollView {
         return contentHeight
     }
     
+    var isFixedWidthTabSegment: Bool = false
+    
     func addSegmentView(_ controllers: [UIViewController], frame: CGRect) {
         
         if controllers.count > 1 {
             
             segmentView = SJSegmentView(frame: CGRect.zero)
+            segmentView?.isFixedWidthTabSegment         = self.isFixedWidthTabSegment
 			segmentView?.controllers					= controllers
             segmentView?.selectedSegmentViewColor		= selectedSegmentViewColor
             segmentView?.selectedSegmentViewHeight		= selectedSegmentViewHeight!
