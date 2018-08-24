@@ -22,13 +22,22 @@
 
 import UIKit
 
+protocol Refresh: class {
+    func refresh()
+}
+
 open class SJSegmentedScrollView: UIScrollView {
     
     var isBounces: Bool = false {
         didSet {
+            if isBounces {
+                self.configRefreshControl()
+            }
             bounces = isBounces
         }
     }
+    
+    var rDelegate: Refresh?
     
     var segmentView: SJSegmentView?
     var headerViewHeight: CGFloat! = 0
@@ -85,8 +94,22 @@ open class SJSegmentedScrollView: UIScrollView {
         addObserver(self, forKeyPath: "contentOffset",
                          options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old],
                          context: nil)
-        
-        
+    }
+    
+    private func configRefreshControl() {
+        if self.isBounces {
+            if #available(iOS 10.0, *) {
+                self.refreshControl = UIRefreshControl()
+                self.refreshControl?.addTarget(self, action: #selector(self.refreshControlTarget), for: .valueChanged)
+                self.addSubview(refreshControl!)
+            } else {
+                // Fallback on earlier versions
+            }
+        }
+    }
+    
+    @objc func refreshControlTarget() {
+        self.rDelegate?.refresh()
     }
     
     required public init?(coder aDecoder: NSCoder) {

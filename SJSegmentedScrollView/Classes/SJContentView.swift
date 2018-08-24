@@ -29,7 +29,7 @@ class SJContentView: UIScrollView {
     var contentView: UIView!
     var contentViewWidthConstraint: NSLayoutConstraint!
     var contentSubViewWidthConstraints = [NSLayoutConstraint]()
-    let animationDuration = 0.3
+    let animationDuration = 0.375
     var didSelectSegmentAtIndex: DidSelectSegmentAtIndex?
     
     override init(frame: CGRect) {
@@ -132,7 +132,7 @@ class SJContentView: UIScrollView {
         let point = CGPoint(x: (index * Int(bounds.size.width)), y: 0)
         
         if animated == true {
-            UIView.animate(withDuration: animationDuration) {
+            UIView.animate(withDuration: TimeInterval(animationDuration)) {
                 self.contentOffset = point
             }
         } else {

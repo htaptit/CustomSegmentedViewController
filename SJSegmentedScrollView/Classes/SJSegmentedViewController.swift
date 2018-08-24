@@ -34,6 +34,8 @@ import UIKit
      - parameter index: index of selected segment.
      */
     @objc optional func didMoveToPage(_ controller: UIViewController, segment: SJSegmentTab?, index: Int)
+    
+    @objc optional func sjRefresh()
 }
 
 /**
@@ -55,7 +57,6 @@ import UIKit
  *  Public class for customizing and setting our segmented scroll view
  */
 @objc open class SJSegmentedViewController: UIViewController {
-    
     /**
      *  The headerview height for 'Header'.
      *
@@ -370,7 +371,7 @@ import UIKit
         segmentedScrollView.segmentViewHeight           = segmentViewHeight
         segmentedScrollView.backgroundColor             = segmentedScrollViewColor
         segmentedScrollView.sjDisableScrollOnContentView = disableScrollOnContentView
-//        segmentedScrollView.isBounces = self.isBounces
+        segmentedScrollView.rDelegate = self
     }
     
     /**
@@ -485,5 +486,11 @@ import UIKit
         delegate?.didMoveToPage?(segmentControllers[0],
                                  segment: segment,
                                  index: 0)
+    }
+}
+
+extension SJSegmentedViewController: Refresh {
+    func refresh() {
+        self.delegate?.sjRefresh?()
     }
 }

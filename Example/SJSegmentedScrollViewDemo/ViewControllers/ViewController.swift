@@ -49,9 +49,9 @@ class ViewController: SJSegmentedViewController {
 			                           thirdViewController!,thirdViewController1!
 			                           ]
             
-            let refreshControl = UIRefreshControl()
-            refreshControl.addTarget(self, action: #selector(self.temp), for: .valueChanged)
-            self.segmentedScrollView.addSubview(refreshControl)
+//            let refreshControl = UIRefreshControl()
+//            refreshControl.addTarget(self, action: #selector(self.temp), for: .valueChanged)
+//            self.segmentedScrollView.addSubview(refreshControl)
             isBounces = true
 //            verticalTop = -100
 			headerViewHeight = 200

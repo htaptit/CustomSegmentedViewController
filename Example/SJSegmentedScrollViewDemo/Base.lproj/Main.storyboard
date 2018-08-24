@@ -8,14 +8,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-        </array>
-        <array key="HelveticaNeueExtras.ttc">
-            <string>HelveticaNeue-CondensedBold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--SJSegment-->
         <scene sceneID="ufC-wZ-h7g">
@@ -83,7 +75,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUI-bM-XCd">
-                                <rect key="frame" x="20" y="40" width="335" height="547"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="579"/>
                                 <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -104,12 +96,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="BUI-bM-XCd" firstAttribute="leading" secondItem="10k-5Y-7Pa" secondAttribute="leading" constant="20" id="Jnz-YF-X8M"/>
+                            <constraint firstItem="BUI-bM-XCd" firstAttribute="leading" secondItem="10k-5Y-7Pa" secondAttribute="leading" id="MjB-2G-1nB"/>
+                            <constraint firstAttribute="trailing" secondItem="BUI-bM-XCd" secondAttribute="trailing" id="P5f-ut-gKj"/>
+                            <constraint firstItem="BUI-bM-XCd" firstAttribute="top" secondItem="kyM-sh-Oue" secondAttribute="bottom" id="QJR-s0-X7V"/>
                             <constraint firstItem="K3q-v7-wXX" firstAttribute="top" secondItem="hDS-kp-3Ss" secondAttribute="bottom" constant="30" id="ddP-eG-Auj"/>
-                            <constraint firstAttribute="trailing" secondItem="BUI-bM-XCd" secondAttribute="trailing" constant="20" id="gNo-8Q-eB0"/>
-                            <constraint firstItem="BUI-bM-XCd" firstAttribute="top" secondItem="kyM-sh-Oue" secondAttribute="bottom" constant="20" id="hhC-z9-KxZ"/>
                             <constraint firstItem="hDS-kp-3Ss" firstAttribute="centerX" secondItem="10k-5Y-7Pa" secondAttribute="centerX" id="lLO-zH-D5p"/>
-                            <constraint firstItem="hDS-kp-3Ss" firstAttribute="top" secondItem="BUI-bM-XCd" secondAttribute="bottom" constant="20" id="qct-Lh-Y1Q"/>
+                            <constraint firstItem="hDS-kp-3Ss" firstAttribute="top" secondItem="BUI-bM-XCd" secondAttribute="bottom" constant="8" symbolic="YES" id="zBg-0h-Oi4"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -171,7 +163,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VBW-MV-Gmf">
-                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellIdentifier" id="KEz-68-oOc">
@@ -188,38 +180,13 @@
                                     <outlet property="delegate" destination="J1V-qr-hlK" id="Mzj-eP-9MD"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEq-rg-TU8">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                                <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9mf-u0-OpS">
-                                        <rect key="frame" x="122.5" y="14.5" width="130" height="31"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="130" id="B9q-J0-Xqt"/>
-                                            <constraint firstAttribute="height" constant="30" id="Exw-de-f1B"/>
-                                        </constraints>
-                                        <segments>
-                                            <segment title="First"/>
-                                            <segment title="Second"/>
-                                        </segments>
-                                    </segmentedControl>
-                                </subviews>
-                                <color key="backgroundColor" red="0.74800646551724137" green="0.74814116379310347" blue="0.45969827586206896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="9mf-u0-OpS" firstAttribute="centerX" secondItem="hEq-rg-TU8" secondAttribute="centerX" id="JFw-4c-kjB"/>
-                                    <constraint firstAttribute="height" constant="60" id="hQw-PO-WZU"/>
-                                    <constraint firstItem="9mf-u0-OpS" firstAttribute="centerY" secondItem="hEq-rg-TU8" secondAttribute="centerY" id="iPe-ue-y2q"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="hEq-rg-TU8" firstAttribute="top" secondItem="52u-y0-3uE" secondAttribute="top" id="1hM-ki-9B4"/>
-                            <constraint firstItem="bWX-kN-9ry" firstAttribute="top" secondItem="VBW-MV-Gmf" secondAttribute="bottom" id="Ic8-91-jCo"/>
-                            <constraint firstItem="VBW-MV-Gmf" firstAttribute="top" secondItem="hEq-rg-TU8" secondAttribute="bottom" id="Qrk-nQ-rma"/>
-                            <constraint firstItem="VBW-MV-Gmf" firstAttribute="leading" secondItem="52u-y0-3uE" secondAttribute="leading" id="dbx-uS-L8S"/>
-                            <constraint firstItem="hEq-rg-TU8" firstAttribute="leading" secondItem="52u-y0-3uE" secondAttribute="leading" id="gpP-w7-fbp"/>
-                            <constraint firstAttribute="trailing" secondItem="VBW-MV-Gmf" secondAttribute="trailing" id="qE0-MS-GSE"/>
-                            <constraint firstAttribute="trailing" secondItem="hEq-rg-TU8" secondAttribute="trailing" id="tj3-XE-zMl"/>
+                            <constraint firstAttribute="trailing" secondItem="VBW-MV-Gmf" secondAttribute="trailing" id="9As-Ub-a9g"/>
+                            <constraint firstItem="VBW-MV-Gmf" firstAttribute="top" secondItem="52u-y0-3uE" secondAttribute="top" id="ZiZ-5Q-V9o"/>
+                            <constraint firstItem="VBW-MV-Gmf" firstAttribute="bottom" secondItem="bWX-kN-9ry" secondAttribute="top" id="cmg-X4-FCy"/>
+                            <constraint firstItem="VBW-MV-Gmf" firstAttribute="leading" secondItem="52u-y0-3uE" secondAttribute="leading" id="v4Y-tH-dU3"/>
                         </constraints>
                     </view>
                     <connections>
@@ -228,7 +195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NJR-Pd-oYm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="260" y="-307"/>
+            <point key="canvasLocation" x="260" y="-307.1964017991005"/>
         </scene>
     </scenes>
     <resources>
